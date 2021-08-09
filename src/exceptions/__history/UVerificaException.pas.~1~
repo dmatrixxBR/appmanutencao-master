@@ -1,0 +1,103 @@
+unit UVerificaException;
+
+interface
+
+uses
+   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, DB;
+
+type
+   TVerificaException = class
+   public
+      class function TrataExcception(E:Exception): boolean;
+
+      class procedure setLineErro(Value: Integer);
+      class procedure setFileErro(Value: string);
+
+      class function getLineErro: Integer;
+      class function getFileErro: string;
+
+      class procedure SalvarLog(E:Exception);
+   end;
+
+implementation
+
+{ TMyExcessoes }
+
+var FcFileErro: string;
+    FcLineErro: Integer;
+
+//--------- Aqui ficam os retornos das exceções geradas por mim --------------------------------
+
+class function TVerificaException.TrataExcception(E: Exception):boolean;
+begin
+   {if E is EDatabaseError then begin
+      result:= True;
+      ShowMessage('Ocorreu um erro de conexão ao banco de dados' + #13#10 +
+                  'Por favor, contate o suporte para solucionar o problema.' + #13#10 +
+                  'Mensagem: ' + E.Message + #13#10 +
+                  'Classe: ' + E.ClassName);
+   end
+   else} if E is EZeroDivide then begin
+      result:= True;
+      ShowMessage('Impossível dividir número por zero.');
+   end
+   else begin
+      result:= False;
+   end;
+end;
+
+//--------- Aqui terminam os retornos das exceções geradas por mim --------------------------------
+
+class function TVerificaException.getFileErro: string;
+begin
+   result:= FcFileErro;
+end;
+
+class function TVerificaException.getLineErro: Integer;
+begin
+   result:= FcLineErro;
+end;
+
+class procedure TVerificaException.setFileErro(Value: string);
+begin
+   FcFileErro:= Value;
+end;
+
+class procedure TVerificaException.setLineErro(Value: Integer);
+begin
+   FcLineErro:= Value;
+end;
+
+//salva no disco os arquivos de log conforme pegue erros não tratados pelo programador...
+class procedure TVerificaException.SalvarLog(E: Exception);
+var
+   ListaErro: TStringList;
+   LocalDir, LocalFile: string;
+begin
+   LocalDir:= ExtractFilePath(Application.ExeName) + 'log';
+   if not DirectoryExists(LocalDir) then
+      CreateDir(LocalDir);
+   //pega o arquivo pela data do dia
+   LocalFile:= LocalDir + '\' + FormatDateTime('yyyy-mm-dd', Now) + '-erro.txt';
+   //Inicializa a lista
+   ListaErro:= TStringList.Create;
+   try
+      if FileExists(LocalFile) then
+         ListaErro.LoadFromFile(LocalFile);
+
+      //adiciona na lista os novos erros
+      ListaErro.Add('--------------------------------------------------');
+      ListaErro.Add('Data: ' + DateToStr(Date));
+      ListaErro.Add('Hora: ' + TimeToStr(Time));
+      ListaErro.Add('Erro: ' + E.Message);
+      ListaErro.Add('Classe: ' + E.ClassName);
+      ListaErro.Add('Linha: ' + IntToStr(FcLineErro));
+      ListaErro.Add('Arquivo: ' + FcFileErro);
+      ListaErro.SaveToFile(LocalFile);
+   finally
+      ListaErro.Free;
+   end;
+end;
+
+end.

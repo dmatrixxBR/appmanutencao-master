@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/08/06 20:18:08.000.357,=D:\projetos\appmanutencao-master\src\exceptions\UAssertionErro.pas</Transaction>
+    <Transaction>2021/08/06 20:18:21.000.776,=D:\projetos\appmanutencao-master\src\exceptions\UVerificaException.pas</Transaction>
+    <Transaction>2021/08/06 22:03:35.000.463,=D:\projetos\appmanutencao-master\src\Unit1.pas</Transaction>
+    <Transaction>2021/08/06 22:03:55.000.602,=D:\projetos\appmanutencao-master\src\Unit1.pas</Transaction>
+    <Transaction>2021/08/06 22:26:30.000.967,D:\projetos\appmanutencao-master\src\Unit1.dfm=D:\projetos\appmanutencao-master\src\exceptions\untException.dfm</Transaction>
+    <Transaction>2021/08/06 22:26:30.000.967,D:\projetos\appmanutencao-master\src\Unit1.pas=D:\projetos\appmanutencao-master\src\exceptions\untException.pas</Transaction>
+    <Transaction>2021/08/08 18:35:28.000.374,=D:\projetos\appmanutencao-master\src\Unit1.pas</Transaction>
+    <Transaction>2021/08/08 18:36:28.000.627,D:\projetos\appmanutencao-master\src\Threads.pas=D:\projetos\appmanutencao-master\src\Unit1.pas</Transaction>
+    <Transaction>2021/08/08 18:36:28.000.627,D:\projetos\appmanutencao-master\src\Threads.dfm=D:\projetos\appmanutencao-master\src\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
