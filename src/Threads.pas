@@ -78,7 +78,7 @@ procedure TFThreads.FormCreate(Sender: TObject);
 begin
 memo1.Lines.Clear;
 edtThreads.Text:='10';
-edtTime.Text:='1000';
+edtTime.Text:='5';
 
 end;
 
