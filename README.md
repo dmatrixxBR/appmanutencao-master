@@ -35,12 +35,12 @@ Corrija cada defeito descrito abaixo. Na descrição do defeito terá o problema
 
 `Defeito 1: na tela DatasetLoop, ao clicar no botão "Deletar pares" não deleta todos os pares do dataset. Objetivo: que todos os números pares sejam deletados`
 
-Solução:
+Solução: Incluir o Else na condicional;
 
 `Defeito 2: na tela ClienteServidor, ocorre erro "Out of Memory" ao clicar no botão "Enviar sem erros". Objetivo: que não ocorra erro por falta de memória, e que todos os arquivos sejam enviados para a pasta Servidor normalmente.`
 
-Solução:
+Solução: liberar o clientDataSet da memória, refatorar a rotina. Para envio de arquivos, utilizar um TMemoryStream ou TFileStream.
 
 `Defeito 3: na tela ClienteServidor, ao clicar no botão "Enviar com erros", os arquivos enviados anteriormente não são apagados da pasta Servidor. Objetivo: quando ocorrer erro na operação, que é o caso que esse botão simula, os arquivos copiados anteriormente devem ser apagados, simulando um "rollback". Ou seja, no fim da operação, os arquivos devem continuar na pasta apenas se não ocorreu erro na operação. obs: não é para ser corrigido o erro que ocorre ao clicar nesse botão, visto que ele serve justamente para simular um erro.`
 
-Solução:
+Solução: Implementar a rotina para deleção dos arquivos.
